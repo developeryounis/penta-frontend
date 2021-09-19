@@ -14,8 +14,9 @@ import { HttpInterceptorService } from './Interceptor/http-interceptor.service';
 import { HasAccessService } from './services/Authentication/has-access.service'
 import { AuthenticationService } from './services/Authentication/authentication.service'
 import { APIClient } from './services/api-client.service';
-import {InputTextModule} from 'primeng/inputtext';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TableModule } from 'primeng/table'
+// import { ButtonModule, CalendarModule, InputTextModule, TableModule } from 'primeng-lts';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,8 +32,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       { path: '', component: StudentComponent, pathMatch: 'full', canActivate: [HasAccessService] },
       { path: 'login', component: LoginComponent }
     ]),
-    BrowserAnimationsModule,
-    InputTextModule
+    TableModule,
+    // CalendarModule,
+		// ButtonModule,
+    // InputTextModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true },

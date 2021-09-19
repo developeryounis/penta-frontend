@@ -29,6 +29,8 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
     });
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+
+    localStorage.removeItem('Token');
   }
   get formData() { return this.loginForm.controls; }
 
@@ -40,10 +42,13 @@ export class LoginComponent implements OnInit {
 
     this.submitClick = true;
     this.authenticationService.login(this.loginForm.value)
-      .pipe(first())
       .subscribe(
-        data => {
-          this.router.navigate([this.returnUrl]);
+        (data) => {
+          if(data && data.token) {
+            localStorage.setItem('Token', data.token);
+            this.router.navigate([this.returnUrl]);
+          }
+
         },
         error => {
           this.error = 'Invalid Username/Password';

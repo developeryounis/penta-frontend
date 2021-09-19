@@ -9,12 +9,12 @@ export class HttpInterceptorService implements HttpInterceptor {
 
   constructor() { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let tokenInfo = JSON.parse(localStorage.getItem('Token'));
+    let tokenInfo = localStorage.getItem('Token');
 
-    if (tokenInfo && tokenInfo.token) {
+    if (tokenInfo) {
       req = req.clone({
         setHeaders: {
-          Authorization: `Bearer ${tokenInfo.token}`,
+          Authorization: `Bearer ${tokenInfo}`,
           'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
         }
       });

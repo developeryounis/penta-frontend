@@ -1,23 +1,21 @@
-<h2>Login</h2>
-<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-  <div class="form-group">
-    <label for="username">Username</label>
-    <input type="text"  formControlName="username" class="form-control"
-      [ngClass]="{ 'is-invalid': submitted && formData.username.errors }" />
-    <div *ngIf="submitted && formData.username.errors" class="invalid-feedback">
-      <div *ngIf="formData.username.errors.required">Username is required</div>
-    </div>
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <h2 class="active"> Sign In </h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <input type="text" formControlName="username" [ngClass]="{ 'is-invalid': submitted && formData.username.errors }"
+        class="fadeIn second" placeholder="Username">
+      <div *ngIf="submitted && formData.username.errors" class="invalid-feedback">
+        <div *ngIf="formData.username.errors.required">Username is required</div>
+      </div>
+      <input type="password" formControlName="password" placeholder="Password" class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && formData.password.errors }" class="fadeIn third" />
+      <div *ngIf="submitted && formData.password.errors" class="invalid-feedback">
+        <div *ngIf="formData.password.errors.required">Password is required</div>
+      </div>
+      <input type="submit" class="fadeIn fourth" value="Log In">
+      <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+    </form>
+
+
   </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" formControlName="password" class="form-control"
-      [ngClass]="{ 'is-invalid': submitted && formData.password.errors }" />
-    <div *ngIf="submitted && formData.password.errors" class="invalid-feedback">
-      <div *ngIf="formData.password.errors.required">Password is required</div>
-    </div>
-  </div>
-  <div class="form-group">
-    <button [disabled]="submitClick" class="btn btn-primary">Login</button>
-  </div>
-  <div *ngIf="error" class="alert alert-danger">{{error}}</div>
-</form>
+</div>
