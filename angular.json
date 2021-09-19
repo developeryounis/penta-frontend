@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "penta-frontend"
+    }
+  },
+  "defaultProject": "penta-frontend",
+  "cli": {
+    "analytics": false
+  }
 }
